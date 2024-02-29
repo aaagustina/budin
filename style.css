@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #131415;
+    overflow: hidden;
+    color: white;
+    font-family: sans-serif;
+}
+
+.container {
+    height: 10vh;
+    width: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+}
+
+ul li {
+    list-style: none;
+    color: white;
+    font-size: 50px;
+    padding-bottom: 5px;
+    transform: translateY(-500px);
+    opacity: 0;
+}
+
+input{
+    display: none;
+}
+label {
+    position: fixed;
+    top: 5px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 99;
+}
+
+label > div {
+    height: 5px;
+    width: 35px;
+    background: white;
+    margin: 5px;
+}
+
+label:hover > div {
+    background-color: purple;
+}
+
+#toggle-nav:checked ~ .container {
+    height: 100vh;
+    width: 275px;
+    background: #1a1a40;
+}
+
+#toggle-nav:checked ~ label {
+    left: 210px;
+}
+
+#toggle-nav:checked ~ .container ul li {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Vamos a hacer la X con el menu */
+
+#toggle-nav:checked ~ label > div:nth-child(1) {
+    transform: rotate(45deg);
+    margin-top: 18px;
+}
+
+#toggle-nav:checked ~ label > div:nth-child(2) {
+    opacity: 0;
+}
+
+#toggle-nav:checked ~ label > div:nth-child(3) {
+    transform: rotate(-45deg);
+    margin-top: -18px;
+}
+
+/*Transiciones*/
+ul li {
+    transition: transform 0.6s ease;
+}
+
+label {
+    transition: 0.3s ease;
+}
+
+label > div {
+    transition: 0.5s ease;
+}
+
+.content {
+    color: white;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 5rem 0;
+}
+
+h2 {
+    position: relative;
+    font-size: 9rem;
+}
+h2::before {
+    transform: scaleX(0);
+    transform-origin: bottom right;
+}
+h2:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+h2::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top:0; right: 0; bottom: 0; left: 0;
+    inset: 0 0 0 0;
+    background: hsl (200 100% 80%);
+    z-index: -1;
+    transition: transform .3s ease;
+}
+html { 
+    block-size: 100%;
+    inline-size: 100%;
+}
+body {
+    min-block-size: 100%;
+    min-inline-size: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+    font-family: sans-serif;
+}
+@media (orientation: landscape) {
+    body {
+        grid-auto-flow: column;
+    }
+
+}
+p {
+    line-height: 30px;
+}
